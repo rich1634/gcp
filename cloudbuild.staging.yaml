@@ -4,10 +4,14 @@
 steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args: ['echo', 'Building...']
+  options:
+    logsBucket: 'gs://your-custom-logs-bucket'
   id: BUILD
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args: ['echo', 'Testing...']
+  options:
+    logsBucket: 'gs://your-custom-logs-bucket'
   id: TEST
 
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -22,6 +26,8 @@ steps:
   - --runtime=$_FUNCTION_RUNTIME
   - --project=$_FUNCTION_PROJECT
   - --entry-point=$_ENTRY_POINT
+  options:
+    logsBucket: 'gs://your-custom-logs-bucket'
   id: DEPLOY
 
 substitutions:
